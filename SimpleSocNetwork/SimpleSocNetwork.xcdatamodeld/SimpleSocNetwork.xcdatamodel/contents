@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="PhotoData" representedClassName="PhotoData" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <relationship name="profilePhoto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="photos" inverseEntity="ProfileData"/>
+        <relationship name="profileStories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="stories" inverseEntity="ProfileData"/>
+    </entity>
+    <entity name="PostData" representedClassName="PostData" syncable="YES" codeGenerationType="class">
+        <attribute name="comments" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dateTime" optional="YES" attributeType="String"/>
+        <attribute name="descriptions" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isBookmarked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="profileFavoritePosts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="favoritesPosts" inverseEntity="ProfileData"/>
+        <relationship name="profilePosts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="posts" inverseEntity="ProfileData"/>
+    </entity>
+    <entity name="ProfileData" representedClassName="ProfileData" syncable="YES" codeGenerationType="class">
+        <attribute name="dayBirth" optional="YES" attributeType="String"/>
+        <attribute name="hometown" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="surname" optional="YES" attributeType="String"/>
+        <attribute name="userAvatar" optional="YES" attributeType="String"/>
+        <attribute name="userJob" optional="YES" attributeType="String"/>
+        <relationship name="favoritesPosts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostData" inverseName="profileFavoritePosts" inverseEntity="PostData"/>
+        <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="subscriptions" inverseEntity="ProfileData"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoData" inverseName="profilePhoto" inverseEntity="PhotoData"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PostData" inverseName="profilePosts" inverseEntity="PostData"/>
+        <relationship name="stories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoData" inverseName="profileStories" inverseEntity="PhotoData"/>
+        <relationship name="subscriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProfileData" inverseName="followers" inverseEntity="ProfileData"/>
+    </entity>
+</model>
